@@ -3,16 +3,16 @@ Version:	0.25
 Release:	1
 Summary:	Utilities to derive new fonts from existing ones
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive//fonts/utilities/accfonts
+URL:		http://www.ctan.org/tex-archive/fonts/utilities/accfonts
 License:	GPL
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/accfonts.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/accfonts.doc.tar.xz
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(post):	texlive-tlpkg
+Requires:	texlive-accfonts.bin
 Conflicts:	texlive-texmf <= 20110705-3
 Conflicts:	texlive-doc <= 20110705-3
-Provides:	texlive-accfonts.bin = %{EVRD}
 
 %description
 The accfonts package contains three utilities to permit easy
@@ -36,11 +36,13 @@ poor resolutions. The programs are written in Perl.
     %_texmf_mktexlsr_post
 
 %preun
-    %_texmf_mktexlsr_preun
+    if [ $1 -eq 0 ]; then
+	%_texmf_mktexlsr_pre
+    fi
 
 %postun
     if [ $1 -eq 0 ]; then
-	%_texmf_mltexlsr_post
+	%_texmf_mktexlsr_post
     fi
 
 #-----------------------------------------------------------------------
