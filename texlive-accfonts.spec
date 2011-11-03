@@ -1,3 +1,9 @@
+# revision 18835
+# category Package
+# catalog-ctan /fonts/utilities/accfonts
+# catalog-date 2009-04-10 11:27:58 +0200
+# catalog-license gpl
+# catalog-version 0.25
 Name:		texlive-accfonts
 Version:	0.25
 Release:	1
@@ -61,6 +67,7 @@ poor resolutions. The programs are written in Perl.
 %doc %{_texmfdistdir}/doc/fonts/accfonts/CHANGES
 %doc %{_texmfdistdir}/doc/fonts/accfonts/COPYING
 %doc %{_texmfdistdir}/doc/fonts/accfonts/README
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -77,3 +84,5 @@ pushd %{buildroot}%{_bindir}
 popd
 mkdir -p %{buildroot}%{_datadir}
 cp -fpar texmf-dist %{buildroot}%{_datadir}
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
