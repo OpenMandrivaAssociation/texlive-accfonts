@@ -16,7 +16,7 @@ Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/accfonts.doc.tar.
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(post):	texlive-tlpkg
-Requires:	texlive-accfonts.bin
+Provides:	texlive-accfonts.bin = %{EVRD}
 Conflicts:	texlive-texmf <= 20110705-3
 Conflicts:	texlive-doc <= 20110705-3
 
