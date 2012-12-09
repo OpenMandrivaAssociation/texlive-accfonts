@@ -74,3 +74,19 @@ pushd %{buildroot}%{_bindir}
 popd
 mkdir -p %{buildroot}%{_datadir}
 cp -fpar texmf-dist %{buildroot}%{_datadir}
+
+
+%changelog
+* Tue Jan 03 2012 Paulo Andrade <pcpa@mandriva.com.br> 0.25-2
++ Revision: 749053
+- Rebuild to reduce used resources
+
+* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 0.25-1
++ Revision: 717786
+- texlive-accfonts
+- texlive-accfonts
+- texlive-accfonts
+- texlive-accfonts
+- texlive-accfonts
+- texlive-accfonts
+
