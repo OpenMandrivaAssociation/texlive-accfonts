@@ -6,7 +6,7 @@
 # catalog-version 0.25
 Name:		texlive-accfonts
 Version:	0.25
-Release:	9
+Release:	10
 Summary:	Utilities to derive new fonts from existing ones
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/fonts/utilities/accfonts
