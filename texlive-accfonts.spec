@@ -1,18 +1,12 @@
-# revision 18835
-# category Package
-# catalog-ctan /fonts/utilities/accfonts
-# catalog-date 2009-04-10 11:27:58 +0200
-# catalog-license gpl
-# catalog-version 0.25
 Name:		texlive-accfonts
-Version:	0.25
-Release:	12
+Version:	18835
+Release:	1
 Summary:	Utilities to derive new fonts from existing ones
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/fonts/utilities/accfonts
 License:	GPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/accfonts.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/accfonts.doc.tar.xz
+Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/accfonts.r%{version}.tar.xz
+Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/accfonts.doc.r%{version}.tar.xz
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
@@ -35,12 +29,12 @@ generates suitable "hints" to enhance quality at small sizes or
 poor resolutions. The programs are written in Perl.
 
 %post
-    %{_sbindir}/texlive.post
+%{_sbindir}/texlive.post
 
 %postun
-    if [ $1 -eq 0 ]; then
+if [ $1 -eq 0 ]; then
 	%{_sbindir}/texlive.post
-    fi
+fi
 
 #-----------------------------------------------------------------------
 %files
@@ -61,32 +55,16 @@ poor resolutions. The programs are written in Perl.
 
 #-----------------------------------------------------------------------
 %prep
-%setup -c -a0 -a1
+%autosetup -p1 -c -a1
 
 %build
 
 %install
 mkdir -p %{buildroot}%{_bindir}
 pushd %{buildroot}%{_bindir}
-    ln -sf %{_texmfdistdir}/scripts/accfonts/mkt1font mkt1font
-    ln -sf %{_texmfdistdir}/scripts/accfonts/vpl2ovp vpl2ovp
-    ln -sf %{_texmfdistdir}/scripts/accfonts/vpl2vpl vpl2vpl
+ln -sf %{_texmfdistdir}/scripts/accfonts/mkt1font mkt1font
+ln -sf %{_texmfdistdir}/scripts/accfonts/vpl2ovp vpl2ovp
+ln -sf %{_texmfdistdir}/scripts/accfonts/vpl2vpl vpl2vpl
 popd
 mkdir -p %{buildroot}%{_datadir}
 cp -fpar texmf-dist %{buildroot}%{_datadir}
-
-
-%changelog
-* Tue Jan 03 2012 Paulo Andrade <pcpa@mandriva.com.br> 0.25-2
-+ Revision: 749053
-- Rebuild to reduce used resources
-
-* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 0.25-1
-+ Revision: 717786
-- texlive-accfonts
-- texlive-accfonts
-- texlive-accfonts
-- texlive-accfonts
-- texlive-accfonts
-- texlive-accfonts
-
