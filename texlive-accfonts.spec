@@ -1,6 +1,6 @@
 Name:		texlive-accfonts
 Version:	18835
-Release:	1
+Release:	2
 Summary:	Utilities to derive new fonts from existing ones
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/fonts/utilities/accfonts
