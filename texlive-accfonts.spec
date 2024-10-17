@@ -3,7 +3,7 @@ Version:	18835
 Release:	2
 Summary:	Utilities to derive new fonts from existing ones
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/fonts/utilities/accfonts
+URL:		https://www.ctan.org/tex-archive/fonts/utilities/accfonts
 License:	GPL
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/accfonts.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/accfonts.doc.r%{version}.tar.xz
