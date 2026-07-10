@@ -12,9 +12,7 @@ License:	gpl
 Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/accfonts.r%{tl_revision}.tar.xz
 Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/accfonts.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildSystem:	texlive
-BuildRequires:	texlive-tlpkg
-%texlive_base_requires
+Requires(pre):	texlive-tlpkg
 Requires:	texlive(accfonts.bin)
 Provides:	texlive(%{tl_name}) = %{tl_revision}
 
@@ -32,3 +30,52 @@ information for new characters; mkt1font also generates suitable "hints"
 to enhance quality at small sizes or poor resolutions. The programs are
 written in Perl.
 
+%prep
+%setup -q -c -a1
+rm -rf tlpkg
+if [ -d RELOC ]; then
+	cp -a RELOC/. .
+	rm -rf RELOC
+fi
+
+%build
+
+%install
+mkdir -p %{buildroot}%{_datadir}/texmf-dist
+# Flat tlnet layout: tex/ doc/ source/ fonts/ ... -> texmf-dist/
+if [ -d texmf-dist ]; then
+	cp -a texmf-dist/. %{buildroot}%{_datadir}/texmf-dist/
+elif [ -d texmf ]; then
+	mkdir -p %{buildroot}%{_datadir}/texmf
+	cp -a texmf/. %{buildroot}%{_datadir}/texmf/
+else
+	for d in * .[!.]* ..?*; do
+		[ -e "$d" ] || continue
+		case "$d" in tlpkg|RELOC) continue ;; esac
+		cp -a "$d" %{buildroot}%{_datadir}/texmf-dist/
+	done
+fi
+rm -rf %{buildroot}%{_datadir}/texmf-dist/tlpkg
+
+%files
+%dir %{_datadir}/texmf-dist
+%dir %{_datadir}/texmf-dist/texmf-dist
+%dir %{_datadir}/texmf-dist/texmf-dist/doc
+%dir %{_datadir}/texmf-dist/texmf-dist/scripts
+%dir %{_datadir}/texmf-dist/texmf-dist/tex
+%dir %{_datadir}/texmf-dist/texmf-dist/doc/fonts
+%dir %{_datadir}/texmf-dist/texmf-dist/scripts/accfonts
+%dir %{_datadir}/texmf-dist/texmf-dist/tex/latex
+%dir %{_datadir}/texmf-dist/texmf-dist/doc/fonts/accfonts
+%dir %{_datadir}/texmf-dist/texmf-dist/tex/latex/accfonts
+%doc %{_datadir}/texmf-dist/texmf-dist/doc/fonts/accfonts/CHANGES
+%doc %{_datadir}/texmf-dist/texmf-dist/doc/fonts/accfonts/COPYING
+%doc %{_datadir}/texmf-dist/texmf-dist/doc/fonts/accfonts/README
+%{_datadir}/texmf-dist/texmf-dist/scripts/accfonts/mkt1font
+%{_datadir}/texmf-dist/texmf-dist/scripts/accfonts/vpl2ovp
+%{_datadir}/texmf-dist/texmf-dist/scripts/accfonts/vpl2vpl
+%{_datadir}/texmf-dist/texmf-dist/tex/latex/accfonts/CSX.def
+%{_datadir}/texmf-dist/texmf-dist/tex/latex/accfonts/ISO-Latin1.def
+%{_datadir}/texmf-dist/texmf-dist/tex/latex/accfonts/ISO-Latin2.def
+%{_datadir}/texmf-dist/texmf-dist/tex/latex/accfonts/IndUni_Omega.def
+%{_datadir}/texmf-dist/texmf-dist/tex/latex/accfonts/Norman.def
