@@ -1,5 +1,6 @@
 %global tl_name accfonts
 %global tl_revision 18835
+%global tl_bin_links mkt1font:%{_texmfdistdir}/scripts/accfonts/mkt1font vpl2ovp:%{_texmfdistdir}/scripts/accfonts/vpl2ovp vpl2vpl:%{_texmfdistdir}/scripts/accfonts/vpl2vpl
 
 Name:		texlive-%{tl_name}
 Epoch:		1
@@ -15,6 +16,8 @@ BuildArch:	noarch
 BuildSystem:	texlive
 Requires:	texlive(accfonts.bin)
 Provides:	texlive(%{tl_name}) = %{tl_revision}
+Provides:	texlive(%{tl_name}.bin) = %{tl_revision}
+Provides:	texlive-%{tl_name}.bin = %{EVRD}
 
 %description
 The accfonts package contains three utilities to permit easy
